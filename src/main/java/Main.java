@@ -1,18 +1,21 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    private static final String FILE_NAME = "10m.txt";
+    private static String FILE_NAME;
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String fileName = scanner.nextLine();
-        WorkWithFile workWithFile = new WorkWithFile();
-        ArrayList<Long> arrayList = workWithFile.parseToArrayList(fileName);
-        System.out.println("MAX VALUE: " + workWithFile.getMax(arrayList));
-        System.out.println("MIN VALUE: " + workWithFile.getMin(arrayList));
-        System.out.println("AVERAGE VALUE: " + workWithFile.getAverage(arrayList));
-        System.out.println("MEDIAN VALUE: " + workWithFile.getMedian(arrayList));
-        System.out.println("BIGGEST INCREASING SEQUENCE VALUE: " + workWithFile.biggestIncreasingSequence(arrayList));
-        System.out.println("BIGGEST DECREASING SEQUENCE VALUE: " + workWithFile.biggestDecreasingSequence(arrayList));
+        try (Scanner scanner = new Scanner(System.in)) {
+            System.out.println("ENTER THE FILE NAME: ");
+            FILE_NAME = scanner.nextLine();
+
+            FileDataProcessor workWithFile = new FileDataProcessor(FILE_NAME);
+            System.out.println("MAX VALUE: " + workWithFile.getMax());
+            System.out.println("MIN VALUE: " + workWithFile.getMin());
+            System.out.println("AVERAGE VALUE: " + workWithFile.getAverage());
+            System.out.println("MEDIAN VALUE: " + workWithFile.getMedian());
+            System.out.println("BIGGEST INCREASING SEQUENCE VALUE: " + workWithFile.biggestIncreasingSequence());
+            System.out.println("BIGGEST DECREASING SEQUENCE VALUE: " + workWithFile.biggestDecreasingSequence());
+        } catch (Exception e) {
+            System.out.println("CANNOT FIND FILE BY NAME: " + FILE_NAME);
+        }
     }
 }

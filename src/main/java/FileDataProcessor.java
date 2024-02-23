@@ -4,9 +4,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class WorkWithFile {
+public class FileDataProcessor {
+    private ArrayList<Long> list;
 
-    public ArrayList<Long> parseToArrayList(String fileName) {
+    public FileDataProcessor(String fileName) {
+        this.list = parseToArrayList(fileName);
+    }
+
+    private ArrayList<Long> parseToArrayList(String fileName) {
         ArrayList<Long> list = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             String line;
@@ -19,28 +24,31 @@ public class WorkWithFile {
         return list;
     }
 
-    public long getMax(ArrayList<Long> list) {
+    public long getMax() {
         return Collections.max(list);
     }
 
-    public long getMin(ArrayList<Long> list) {
+    public long getMin() {
         return Collections.min(list);
     }
 
-    public double getAverage(ArrayList<Long> list) {
+    public double getAverage() {
         return list.stream()
                 .mapToDouble(num -> num)
                 .average()
                 .getAsDouble();
     }
 
-    public double getMedian(ArrayList<Long> list) {
-        Collections.sort(list);
-        int size = list.size();
-        return size % 2 == 0 ? 0.5 * (list.get(size / 2) + list.get(size / 2 - 1)) : list.get(size / 2);
+    public double getMedian() {
+        ArrayList<Long> sortedList = new ArrayList<>(list);
+        Collections.sort(sortedList);
+        int size = sortedList.size();
+        return size % 2 == 0
+                ? 0.5 * (sortedList.get(size / 2) + sortedList.get(size / 2 - 1))
+                : sortedList.get(size / 2);
     }
 
-    public int biggestIncreasingSequence(ArrayList<Long> list) {
+    public int biggestIncreasingSequence() {
         int biggestSequence = 0;
         int counter = 1;
         ArrayList<Long> sequence = new ArrayList<>();
@@ -67,7 +75,7 @@ public class WorkWithFile {
         return biggestSequence;
     }
 
-    public int biggestDecreasingSequence(ArrayList<Long> list) {
+    public int biggestDecreasingSequence() {
         int biggestSequence = 0;
         int counter = 1;
         ArrayList<Long> sequence = new ArrayList<>();
