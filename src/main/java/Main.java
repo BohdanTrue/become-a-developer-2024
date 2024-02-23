@@ -12,5 +12,7 @@ public class Main {
         System.out.println("MIN VALUE: " + workWithFile.getMin(arrayList));
         System.out.println("AVERAGE VALUE: " + workWithFile.getAverage(arrayList));
         System.out.println("MEDIAN VALUE: " + workWithFile.getMedian(arrayList));
+        System.out.println("BIGGEST INCREASING SEQUENCE VALUE: " + workWithFile.biggestIncreasingSequence(arrayList));
+        System.out.println("BIGGEST DECREASING SEQUENCE VALUE: " + workWithFile.biggestDecreasingSequence(arrayList));
     }
 }
